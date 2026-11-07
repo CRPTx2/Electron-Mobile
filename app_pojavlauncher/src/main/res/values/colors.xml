@@ -2,22 +2,19 @@
 <resources>
     <color name="control_button_color">#4CC4C4C4</color>
     <color name="control_button_pressed_color">#4D000000</color>
-
-    <color name="minebutton_color">#7865F5</color>
-    <color name="background_app">#0B0E17</color>
-    <color name="divider">#29344A</color>
-    <color name="background_overlay">#202A3D</color>
-    <color name="background_status_bar">#090C14</color>
-    <color name="background_bottom_bar">#111827</color>
-
-    <color name="primary_text">#F5F7FF</color>
-    <color name="secondary_text">#9AA7C0</color>
-
-    <color name="electron_bg">#0B0E17</color>
-    <color name="electron_surface">#141B2B</color>
-    <color name="electron_surface_alt">#1A2438</color>
-    <color name="electron_accent">#8B78FF</color>
-    <color name="electron_accent_blue">#45B8F5</color>
-    <color name="electron_text_muted">#9AA7C0</color>
-    <color name="electron_outline">#293650</color>
+    <color name="minebutton_color">#3478F6</color>
+    <color name="background_app">#080A0F</color>
+    <color name="divider">#202B40</color>
+    <color name="background_overlay">#151D2B</color>
+    <color name="background_status_bar">#05070B</color>
+    <color name="background_bottom_bar">#080A0F</color>
+    <color name="primary_text">#F5F7FC</color>
+    <color name="secondary_text">#929DB0</color>
+    <color name="electron_bg">#080A0F</color>
+    <color name="electron_surface">#101722</color>
+    <color name="electron_surface_alt">#172235</color>
+    <color name="electron_accent">#3478F6</color>
+    <color name="electron_accent_blue">#438BFF</color>
+    <color name="electron_text_muted">#929DB0</color>
+    <color name="electron_outline">#26364F</color>
 </resources>
