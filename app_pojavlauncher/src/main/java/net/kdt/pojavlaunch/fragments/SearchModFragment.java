@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -21,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import net.kdt.pojavlaunch.R;
 import net.kdt.pojavlaunch.modloaders.modpacks.ModItemAdapter;
-import net.kdt.pojavlaunch.modloaders.modpacks.api.CommonApi;
+import net.kdt.pojavlaunch.modloaders.modpacks.api.ModrinthApi;
 import net.kdt.pojavlaunch.modloaders.modpacks.api.ModpackApi;
 import net.kdt.pojavlaunch.modloaders.modpacks.models.SearchFilters;
 import net.kdt.pojavlaunch.profiles.VersionSelectorDialog;
@@ -55,13 +57,14 @@ public class SearchModFragment extends Fragment implements ModItemAdapter.Search
     public SearchModFragment(){
         super(R.layout.fragment_mod_search);
         mSearchFilters = new SearchFilters();
-        mSearchFilters.isModpack = true;
+        mSearchFilters.isModpack = false;
+        mSearchFilters.loader = "fabric";
     }
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        modpackApi = new CommonApi(context.getString(R.string.curseforge_api_key));
+        modpackApi = new ModrinthApi();
     }
 
     @Override
@@ -100,6 +103,7 @@ public class SearchModFragment extends Fragment implements ModItemAdapter.Search
         });
         mFilterButton.setOnClickListener(v -> displayFilterDialog());
 
+        try { mSearchFilters.mcVersion = net.kdt.pojavlaunch.Tools.getSelectedVanillaMcVer(); } catch (Exception ignored) {}
         searchMods(null);
     }
 
@@ -148,10 +152,16 @@ public class SearchModFragment extends Fragment implements ModItemAdapter.Search
             TextView mSelectedVersion = dialog.findViewById(R.id.search_mod_selected_mc_version_textview);
             Button mSelectVersionButton = dialog.findViewById(R.id.search_mod_mc_version_button);
             Button mApplyButton = dialog.findViewById(R.id.search_mod_apply_filters);
+            Spinner mLoaderSpinner = dialog.findViewById(R.id.search_mod_loader_spinner);
 
             assert mSelectVersionButton != null;
             assert mSelectedVersion != null;
             assert mApplyButton != null;
+            assert mLoaderSpinner != null;
+            String[] loaders = {"Fabric", "Forge", "NeoForge", "Quilt"};
+            mLoaderSpinner.setAdapter(new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_dropdown_item, loaders));
+            String[] loaderIds = {"fabric", "forge", "neoforge", "quilt"};
+            for (int i = 0; i < loaderIds.length; i++) if (loaderIds[i].equals(mSearchFilters.loader)) mLoaderSpinner.setSelection(i);
 
             // Setup the expendable list behavior
             mSelectVersionButton.setOnClickListener(v -> VersionSelectorDialog.open(v.getContext(), true, (id, snapshot)-> mSelectedVersion.setText(id)));
@@ -162,6 +172,8 @@ public class SearchModFragment extends Fragment implements ModItemAdapter.Search
             // Apply the new settings
             mApplyButton.setOnClickListener(v -> {
                 mSearchFilters.mcVersion = mSelectedVersion.getText().toString();
+                String[] loaderIds = {"fabric", "forge", "neoforge", "quilt"};
+                mSearchFilters.loader = loaderIds[mLoaderSpinner.getSelectedItemPosition()];
                 searchMods(mSearchEditText.getText().toString());
                 dialogInterface.dismiss();
             });
