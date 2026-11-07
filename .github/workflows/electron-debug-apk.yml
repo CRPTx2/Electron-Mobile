@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - electron-dev
+      - mobilegl-test
   workflow_dispatch:
 
 permissions:
