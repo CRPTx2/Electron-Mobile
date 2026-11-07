@@ -26,7 +26,8 @@ public class ApiHandler {
 
     public ApiHandler(String url) {
         baseUrl = url;
-        additionalHeaders = null;
+        additionalHeaders = new ArrayMap<>();
+        additionalHeaders.put("User-Agent", "Electron-Mobile/1.0 (https://github.com/CRPTx2/Electron-Mobile)");
     }
 
     public ApiHandler(String url, String apiKey) {
