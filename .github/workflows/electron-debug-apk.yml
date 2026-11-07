@@ -1,0 +1,70 @@
+name: Electron Mobile Debug APK
+
+on:
+  push:
+    branches:
+      - electron-dev
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-debug-apk:
+    name: Build sideloadable debug APK
+    runs-on: ubuntu-22.04
+    timeout-minutes: 90
+    steps:
+      - name: Checkout source and submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          validate-wrappers: false
+          gradle-version: '9.6.1'
+
+      - name: Download bundled Java 8 runtime
+        uses: dawidd6/action-download-artifact@v9
+        with:
+          workflow: build.yml
+          path: app_pojavlauncher/src/main/assets/components/jre
+          workflow_conclusion: completed
+          repo: AngelAuraMC/angelauramc-openjdk-build
+          branch: buildjre8
+          name: jre8-pojav
+
+      - name: Prepare launcher resources
+        run: |
+          ./scripts/languagelist_updater.sh
+          mkdir -p out
+
+      - name: Assemble debug APK
+        run: gradle :app_pojavlauncher:assembleDebug --stacktrace
+
+      - name: Verify APK output
+        run: |
+          APK="app_pojavlauncher/build/outputs/apk/debug/app_pojavlauncher-debug.apk"
+          test -s "$APK"
+          cp "$APK" out/Electron-Mobile-debug.apk
+          sha256sum out/Electron-Mobile-debug.apk | tee out/SHA256SUMS.txt
+          ls -lh out/Electron-Mobile-debug.apk
+
+      - name: Upload sideloadable debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Electron-Mobile-debug-APK
+          path: |
+            out/Electron-Mobile-debug.apk
+            out/SHA256SUMS.txt
+          if-no-files-found: error
+          retention-days: 14
