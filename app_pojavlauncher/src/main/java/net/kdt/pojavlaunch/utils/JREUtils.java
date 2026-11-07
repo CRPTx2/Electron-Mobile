@@ -230,6 +230,14 @@ public class JREUtils {
                 envMap.put("LIBGL_ES", "3");
                 envMap.put("POJAVEXEC_EGL","libmobileglues.so");
             }
+            if (LOCAL_RENDERER.equals("opengles_mobilegl_gles")) {
+                envMap.put("MOBILEGL_BACKEND_TYPE", "DirectGLES");
+                if (Tools.useANGLE) {
+                    envMap.put("MOBILEGL_USE_ANGLE", "1");
+                }
+                envMap.put("POJAVEXEC_EGL", "libMobileGL.so");
+                envMap.put("LIBGL_ES", "3");
+            }
             /*
                 Set these to enable ANGLE on GL4ES
                 LIBGL_GLES=libGLESv2_angle.so
@@ -558,6 +566,7 @@ public class JREUtils {
                 renderLibrary = "libng_gl4es.so"; break;
             case "vulkan_zink": renderLibrary = "libOSMesa.so"; break;
             case "opengles_mobileglues": renderLibrary = "libmobileglues.so"; break;
+            case "opengles_mobilegl_gles": renderLibrary = "libMobileGL.so"; break;
             case "opengles3_desktopgl_zink_kopper": renderLibrary = "libglxshim.so"; break;
             case "opengles3_ltw" : renderLibrary = "libltw.so"; break;
             case "opengles_system_gles" : return null; // Literally nothing, this is for system GLES.

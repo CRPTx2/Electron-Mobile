@@ -101,7 +101,7 @@ android {
 
     defaultConfig {
         applicationId "com.electronmobile.launcher"
-        minSdkVersion 21
+        minSdkVersion 26
         targetSdkVersion 34
         versionCode 10000000
         versionName getVersionName()
@@ -117,16 +117,16 @@ android {
 
     buildTypes {
         debug {
-            applicationIdSuffix '.debug'
+            applicationIdSuffix '.mobilegltest'
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.customDebug
             resValue "string", "app_name", "Electron Mobile (Debug)"
             resValue "string", "app_short_name", "Electron (Debug)"
-            resValue 'string', 'application_package', 'com.electronmobile.launcher.debug'
-            resValue 'string', 'storageProviderAuthorities', 'com.electronmobile.launcher.scoped.gamefolder.debug'
-            resValue 'string', 'shareProviderAuthority', 'com.electronmobile.launcher.scoped.controlfolder.debug'
+            resValue 'string', 'application_package', 'com.electronmobile.launcher.mobilegltest'
+            resValue 'string', 'storageProviderAuthorities', 'com.electronmobile.launcher.scoped.gamefolder.mobilegltest'
+            resValue 'string', 'shareProviderAuthority', 'com.electronmobile.launcher.scoped.controlfolder.mobilegltest'
         }
         proguard {
             initWith debug
@@ -253,6 +253,7 @@ dependencies {
     implementation "net.java.dev.jna:jna:5.14.0@aar"
 
     implementation project(":androidnsbypass")
+    implementation project(":MobileGL")
 
 }
 apply from: rootProject.file('gradle/prefab_bypass.gradle')
