@@ -172,7 +172,6 @@ public class SearchModFragment extends Fragment implements ModItemAdapter.Search
             // Apply the new settings
             mApplyButton.setOnClickListener(v -> {
                 mSearchFilters.mcVersion = mSelectedVersion.getText().toString();
-                String[] loaderIds = {"fabric", "forge", "neoforge", "quilt"};
                 mSearchFilters.loader = loaderIds[mLoaderSpinner.getSelectedItemPosition()];
                 searchMods(mSearchEditText.getText().toString());
                 dialogInterface.dismiss();
