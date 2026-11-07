@@ -52,6 +52,7 @@ public class MainMenuFragment extends Fragment {
         Button mDiscordButton = view.findViewById(R.id.discord_button);
         Button mCustomControlButton = view.findViewById(R.id.custom_control_button);
         Button mInstallJarButton = view.findViewById(R.id.install_jar_button);
+        Button mModrinthButton = view.findViewById(R.id.modrinth_button);
         Button mShareLogsButton = view.findViewById(R.id.share_logs_button);
         Button mOpenDirectoryButton = view.findViewById(R.id.open_files_button);
 
@@ -62,6 +63,7 @@ public class MainMenuFragment extends Fragment {
         mNewsButton.setOnClickListener(v -> Tools.openURL(requireActivity(), Tools.URL_HOME));
         mDiscordButton.setOnClickListener(v -> Tools.openURL(requireActivity(), getString(R.string.discord_invite)));
         mCustomControlButton.setOnClickListener(v -> startActivity(new Intent(requireContext(), CustomControlsActivity.class)));
+        mModrinthButton.setOnClickListener(v -> Tools.swapFragment(requireActivity(), SearchModFragment.class, SearchModFragment.TAG, null));
         if (hasOnlineProfile()) {
             mInstallJarButton.setOnClickListener(v -> runInstallerWithConfirmation(false));
             mInstallJarButton.setOnLongClickListener(v -> {
