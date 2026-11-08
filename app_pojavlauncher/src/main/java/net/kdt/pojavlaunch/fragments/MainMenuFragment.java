@@ -9,6 +9,14 @@ import static net.kdt.pojavlaunch.Tools.runOnUiThread;
 import static net.kdt.pojavlaunch.Tools.shareLog;
 
 import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.Drawable;
+import android.view.Gravity;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -72,6 +80,7 @@ public class MainMenuFragment extends Fragment {
             });
         } else mInstallJarButton.setOnClickListener(v -> hasNoOnlineProfileDialog(requireActivity()));
         mEditProfileButton.setOnClickListener(v -> mVersionSpinner.openProfileEditor(requireActivity()));
+        mVersionSpinner.setOnClickListener(v -> showInstancePicker());
 
         mPlayButton.setOnClickListener(v -> {
             if (Tools.hasMods("sodium") && !(LauncherPreferences.DEFAULT_PREF.getBoolean("sodium_override", false))) {
@@ -103,6 +112,130 @@ public class MainMenuFragment extends Fragment {
             Tools.swapFragment(requireActivity(), GamepadMapperFragment.class, GamepadMapperFragment.TAG, null);
             return true;
         });
+    }
+
+
+    private int dp(float value) {
+        return Math.round(value * getResources().getDisplayMetrics().density);
+    }
+
+    private GradientDrawable roundedBackground(int color, int strokeColor) {
+        GradientDrawable drawable = new GradientDrawable();
+        drawable.setColor(color);
+        drawable.setCornerRadius(dp(13));
+        drawable.setStroke(dp(1), strokeColor);
+        return drawable;
+    }
+
+    /** Display installed profiles as large selectable game-library tiles. */
+    private void showInstancePicker() {
+        if (!isAdded()) return;
+        mVersionSpinner.reloadProfiles();
+        ProfileAdapter adapter = mVersionSpinner.getProfileAdapter();
+
+        LinearLayout root = new LinearLayout(requireContext());
+        root.setOrientation(LinearLayout.VERTICAL);
+        root.setPadding(dp(20), dp(20), dp(20), dp(12));
+        root.setBackground(roundedBackground(Color.rgb(23, 24, 30), Color.rgb(58, 56, 69)));
+
+        TextView heading = new TextView(requireContext());
+        heading.setText("Your instances");
+        heading.setTextColor(Color.WHITE);
+        heading.setTextSize(22);
+        heading.setTypeface(android.graphics.Typeface.create("sans-serif", android.graphics.Typeface.BOLD));
+        root.addView(heading);
+
+        TextView description = new TextView(requireContext());
+        description.setText("Choose a setup to launch");
+        description.setTextColor(Color.rgb(160, 159, 171));
+        description.setTextSize(12);
+        LinearLayout.LayoutParams descriptionParams = new LinearLayout.LayoutParams(-1, -2);
+        descriptionParams.topMargin = dp(4);
+        descriptionParams.bottomMargin = dp(15);
+        root.addView(description, descriptionParams);
+
+        ScrollView scroll = new ScrollView(requireContext());
+        LinearLayout cards = new LinearLayout(requireContext());
+        cards.setOrientation(LinearLayout.VERTICAL);
+        scroll.addView(cards);
+        root.addView(scroll, new LinearLayout.LayoutParams(-1, 0, 1));
+
+        AlertDialog dialog = new AlertDialog.Builder(requireContext())
+                .setView(root)
+                .setNegativeButton("Close", null)
+                .setNeutralButton("Manage", (d, which) -> mVersionSpinner.openProfileEditor(requireActivity()))
+                .create();
+
+        for (int i = 0; i < adapter.getCount(); i++) {
+            Object item = adapter.getItem(i);
+            if (!(item instanceof String)) continue;
+            final int profileIndex = i;
+            String profileId = (String) item;
+            MinecraftProfile profile = LauncherProfiles.mainProfileJson.profiles.get(profileId);
+            if (profile == null) continue;
+
+            LinearLayout card = new LinearLayout(requireContext());
+            card.setOrientation(LinearLayout.HORIZONTAL);
+            card.setGravity(Gravity.CENTER_VERTICAL);
+            card.setPadding(dp(10), dp(10), dp(13), dp(10));
+            card.setBackground(roundedBackground(Color.rgb(34, 35, 43), Color.rgb(55, 55, 67)));
+            card.setClickable(true);
+            card.setFocusable(true);
+
+            ImageView artwork = new ImageView(requireContext());
+            artwork.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            Drawable icon = ProfileIconCache.fetchIcon(getResources(), profileId, profile.icon);
+            artwork.setImageDrawable(icon);
+            artwork.setBackground(roundedBackground(Color.rgb(55, 43, 78), Color.rgb(111, 81, 171)));
+            artwork.setClipToOutline(true);
+            card.addView(artwork, new LinearLayout.LayoutParams(dp(76), dp(76)));
+
+            LinearLayout labels = new LinearLayout(requireContext());
+            labels.setOrientation(LinearLayout.VERTICAL);
+            labels.setPadding(dp(13), 0, dp(8), 0);
+            labels.setGravity(Gravity.CENTER_VERTICAL);
+            card.addView(labels, new LinearLayout.LayoutParams(0, -2, 1));
+
+            TextView name = new TextView(requireContext());
+            name.setText(Tools.isValidString(profile.name) ? profile.name : "Minecraft");
+            name.setTextColor(Color.WHITE);
+            name.setTextSize(15);
+            name.setTypeface(android.graphics.Typeface.create("sans-serif", android.graphics.Typeface.BOLD));
+            labels.addView(name);
+
+            TextView version = new TextView(requireContext());
+            version.setText((profile.lastVersionId == null ? "Minecraft" : profile.lastVersionId)
+                    + (Tools.isValidString(profile.type) ? "  ·  " + profile.type : ""));
+            version.setTextColor(Color.rgb(166, 164, 179));
+            version.setTextSize(11);
+            LinearLayout.LayoutParams versionParams = new LinearLayout.LayoutParams(-1, -2);
+            versionParams.topMargin = dp(5);
+            labels.addView(version, versionParams);
+
+            TextView play = new TextView(requireContext());
+            play.setText("▶");
+            play.setTextColor(Color.rgb(178, 139, 255));
+            play.setTextSize(23);
+            play.setGravity(Gravity.CENTER);
+            play.setBackground(roundedBackground(Color.rgb(48, 39, 67), Color.rgb(93, 69, 137)));
+            card.addView(play, new LinearLayout.LayoutParams(dp(42), dp(42)));
+
+            LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(-1, -2);
+            cardParams.bottomMargin = dp(9);
+            cards.addView(card, cardParams);
+            card.setOnClickListener(v -> {
+                mVersionSpinner.setProfileSelection(profileIndex);
+                dialog.dismiss();
+            });
+        }
+
+        dialog.show();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+            dialog.getWindow().setLayout(
+                    Math.min(getResources().getDisplayMetrics().widthPixels - dp(28), dp(520)),
+                    (int) (getResources().getDisplayMetrics().heightPixels * 0.82f));
+        }
     }
 
     private File getCurrentProfileDirectory() {
