@@ -90,7 +90,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="SELECTED INSTANCE"
+                        android:text="INSTANCE"
                         android:textColor="@color/electron_text_muted"
                         android:textSize="10sp"
                         android:textStyle="bold"
@@ -113,7 +113,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="13dp"
-                    android:text="Choose an instance"
+                    android:text="Your selected instance"
                     android:textColor="@color/primary_text"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -122,7 +122,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Select a profile to switch its version, loader and game directory."
+                    android:text="Tap to browse your instance library."
                     android:textColor="@color/electron_text_muted"
                     android:textSize="11sp" />
                 <LinearLayout
@@ -289,7 +289,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="CURRENT PROFILE"
+                android:text="INSTANCE"
                 android:textColor="@color/electron_text_muted"
                 android:textSize="9sp"
                 android:textStyle="bold"
@@ -309,12 +309,20 @@
             android:layout_height="54dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/electron_play_background"
-            android:text="LAUNCH GAME"
+            android:text="Launch"
             android:textAllCaps="true"
             android:textColor="#FFFFFF"
             android:textSize="13sp"
             android:textStyle="bold"
             android:fontFamily="sans"
             android:letterSpacing="0.1" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:text="Instance"
+            android:textColor="@color/electron_text_muted"
+            android:textSize="10sp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
