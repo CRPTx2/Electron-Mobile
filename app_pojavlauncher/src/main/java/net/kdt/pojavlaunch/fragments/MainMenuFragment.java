@@ -188,7 +188,7 @@ public class MainMenuFragment extends Fragment {
             artwork.setImageDrawable(icon);
             artwork.setBackground(roundedBackground(Color.rgb(55, 43, 78), Color.rgb(111, 81, 171)));
             artwork.setClipToOutline(true);
-            card.addView(artwork, new LinearLayout.LayoutParams(dp(76), dp(76)));
+            card.addView(artwork, new LinearLayout.LayoutParams(dp(108), dp(76)));
 
             LinearLayout labels = new LinearLayout(requireContext());
             labels.setOrientation(LinearLayout.VERTICAL);
