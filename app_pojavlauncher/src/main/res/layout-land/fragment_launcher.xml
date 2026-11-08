@@ -59,7 +59,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SELECTED INSTANCE"
+                    android:text="INSTANCE"
                     android:textColor="@color/electron_text_muted"
                     android:textSize="9sp"
                     android:textStyle="bold"
@@ -68,7 +68,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="9dp"
-                    android:text="Choose an instance"
+                    android:text="Your selected instance"
                     android:textColor="@color/primary_text"
                     android:textSize="17sp"
                     android:textStyle="bold"
@@ -77,7 +77,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Switch between profiles and their individual game directories."
+                    android:text="Tap to browse your instance library."
                     android:textColor="@color/electron_text_muted"
                     android:textSize="10sp" />
                 <LinearLayout
@@ -238,7 +238,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LAUNCH SELECTED INSTANCE"
+            android:text="LAUNCH INSTANCE"
             android:textColor="@color/electron_text_muted"
             android:textSize="9sp"
             android:textStyle="bold"
@@ -249,13 +249,21 @@
             android:layout_height="56dp"
             android:layout_marginTop="12dp"
             android:background="@drawable/electron_play_background"
-            android:text="LAUNCH GAME"
+            android:text="Launch"
             android:textAllCaps="true"
             android:textColor="#FFFFFF"
             android:textSize="13sp"
             android:textStyle="bold"
             android:fontFamily="sans"
             android:letterSpacing="0.1" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:text="Instance"
+            android:textColor="@color/electron_text_muted"
+            android:textSize="10sp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
