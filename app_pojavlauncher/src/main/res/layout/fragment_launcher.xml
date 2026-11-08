@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_menu_main"
     android:layout_width="match_parent"
@@ -16,22 +15,20 @@
         android:paddingBottom="16dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/electron_launch_panel">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingStart="18dp"
-            android:paddingTop="20dp"
+            android:paddingTop="18dp"
             android:paddingEnd="18dp"
-            android:paddingBottom="18dp">
+            android:paddingBottom="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
-
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -40,7 +37,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="YOUR SPACE"
+                        android:text="LIBRARY"
                         android:textColor="@color/electron_accent_blue"
                         android:textSize="10sp"
                         android:textStyle="bold"
@@ -48,84 +45,124 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="Let's play."
+                        android:layout_marginTop="4dp"
+                        android:text="Instances"
                         android:textColor="@color/primary_text"
-                        android:textSize="28sp"
+                        android:textSize="27sp"
                         android:textStyle="bold"
-                        android:fontFamily="@font/minecraft_ten" />
+                        android:fontFamily="sans" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Manage your Minecraft setups"
+                        android:textColor="@color/electron_text_muted"
+                        android:textSize="12sp" />
                 </LinearLayout>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/electron_action_background"
-                    android:paddingStart="12dp"
+                    android:paddingStart="11dp"
                     android:paddingTop="8dp"
-                    android:paddingEnd="12dp"
+                    android:paddingEnd="11dp"
                     android:paddingBottom="8dp"
-                    android:text="JAVA  /  MOBILE"
-                    android:textColor="#AFC8FF"
+                    android:text="JAVA  /  ANDROID"
+                    android:textColor="#C9B9FF"
                     android:textSize="9sp"
                     android:textStyle="bold"
-                    android:letterSpacing="0.08" />
+                    android:letterSpacing="0.07" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/electron_hero_background"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/electron_panel_background"
                 android:orientation="vertical"
-                android:padding="18dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="01  /  FEATURED"
-                    android:textColor="#8EB7FF"
-                    android:textSize="10sp"
-                    android:textStyle="bold"
-                    android:letterSpacing="0.15" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
-                    android:text="YOUR WORLD.\nYOUR RULES."
-                    android:textColor="#FFFFFF"
-                    android:textSize="27sp"
-                    android:lineSpacingExtra="2dp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/minecraft_ten" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="A new way to experience Minecraft on Android."
-                    android:textColor="#C0CDE4"
-                    android:textSize="12sp" />
-
+                android:padding="15dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="SELECTED INSTANCE"
+                        android:textColor="@color/electron_text_muted"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.13" />
                     <View
                         android:layout_width="7dp"
                         android:layout_height="7dp"
-                        android:background="#35D98B" />
+                        android:background="#9B75F8" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="7dp"
-                        android:text="READY WHEN YOU ARE"
-                        android:textColor="#B8F4D5"
+                        android:layout_marginStart="6dp"
+                        android:text="READY"
+                        android:textColor="#C9B9FF"
                         android:textSize="9sp"
                         android:textStyle="bold"
-                        android:letterSpacing="0.1" />
+                        android:letterSpacing="0.08" />
                 </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:text="Choose an instance"
+                    android:textColor="@color/primary_text"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:fontFamily="sans" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Select a profile to switch its version, loader and game directory."
+                    android:textColor="@color/electron_text_muted"
+                    android:textSize="11sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <com.kdt.mcgui.mcVersionSpinner
+                        android:id="@+id/mc_version_spinner"
+                        android:layout_width="0dp"
+                        android:layout_height="56dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/electron_field_background"
+                        android:drawableEnd="@drawable/spinner_arrow"
+                        android:textColor="@color/primary_text"
+                        android:textSize="13sp"
+                        app:drawableEndPadding="9dp"
+                        app:drawableEndSize="17dp"
+                        app:drawableStartIntegerScaling="true"
+                        app:drawableStartSize="38dp" />
+                    <ImageButton
+                        android:id="@+id/edit_profile_button"
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
+                        android:layout_marginStart="9dp"
+                        android:background="@drawable/electron_action_background"
+                        android:contentDescription="Manage selected instance"
+                        android:padding="14dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_edit_profile"
+                        android:tint="@color/primary_text" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11dp"
+                    android:text="Use the instance selector to switch between profiles. Edit opens the profile settings."
+                    android:textColor="#777985"
+                    android:textSize="10sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -138,24 +175,42 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="YOUR TOOLKIT"
+                    android:text="MODS &amp; CONTENT"
                     android:textColor="@color/primary_text"
                     android:textSize="13sp"
                     android:textStyle="bold"
-                    android:fontFamily="@font/minecraft_ten" />
+                    android:letterSpacing="0.04" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="02  /  06"
-                    android:textColor="@color/electron_text_muted"
+                    android:text="DISCOVER"
+                    android:textColor="@color/electron_accent_blue"
                     android:textSize="9sp"
-                    android:letterSpacing="0.1" />
+                    android:textStyle="bold"
+                    android:letterSpacing="0.12" />
             </LinearLayout>
+            <com.kdt.mcgui.LauncherMenuButton
+                android:id="@+id/modrinth_button"
+                style="@style/LauncherMenuButton.Universal"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginTop="9dp"
+                android:drawableStart="@drawable/ic_modrinth"
+                android:text="Browse Modrinth mods" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp"
+                android:text="QUICK TOOLS"
+                android:textColor="@color/electron_text_muted"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.14" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="6dp"
                 android:orientation="horizontal">
                 <com.kdt.mcgui.LauncherMenuButton
                     android:id="@+id/news_button"
@@ -172,7 +227,6 @@
                     android:drawableStart="@drawable/ic_discord"
                     android:text="@string/mcl_button_discord" />
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -192,7 +246,6 @@
                     android:drawableStart="@drawable/ic_menu_install_jar"
                     android:text="Install mod" />
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -203,7 +256,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:drawableStart="@android:drawable/ic_menu_share"
-                    android:text="Send logs" />
+                    android:text="Share logs" />
                 <com.kdt.mcgui.LauncherMenuButton
                     android:id="@+id/open_files_button"
                     style="@style/LauncherMenuButton.Universal"
@@ -212,25 +265,6 @@
                     android:drawableStart="@drawable/ic_folder"
                     android:text="Game files" />
             </LinearLayout>
-
-            <com.kdt.mcgui.LauncherMenuButton
-                android:id="@+id/modrinth_button"
-                style="@style/LauncherMenuButton.Universal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:drawableStart="@drawable/ic_modrinth"
-                android:text="Browse Modrinth Mods" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:text="BUILT FOR YOUR NEXT ADVENTURE"
-                android:textColor="#53627B"
-                android:textSize="9sp"
-                android:gravity="center"
-                android:letterSpacing="0.12" />
         </LinearLayout>
     </ScrollView>
 
@@ -240,13 +274,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="9dp"
         android:background="@drawable/electron_panel_background"
-        android:elevation="10dp"
+        android:elevation="8dp"
         android:orientation="vertical"
-        android:padding="12dp"
+        android:padding="11dp"
         app:layout_constraintBottom_toBottomOf="parent">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -256,7 +289,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="SELECTED INSTALLATION"
+                android:text="CURRENT PROFILE"
                 android:textColor="@color/electron_text_muted"
                 android:textSize="9sp"
                 android:textStyle="bold"
@@ -265,55 +298,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ELECTRON"
-                android:textColor="#83AFFF"
+                android:textColor="#C9B9FF"
                 android:textSize="9sp"
                 android:textStyle="bold"
                 android:letterSpacing="0.1" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-            <com.kdt.mcgui.mcVersionSpinner
-                android:id="@+id/mc_version_spinner"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:background="@drawable/electron_field_background"
-                android:drawableEnd="@drawable/spinner_arrow"
-                android:textColor="@color/primary_text"
-                android:textSize="13sp"
-                app:drawableEndPadding="8dp"
-                app:drawableEndSize="16dp"
-                app:drawableStartIntegerScaling="true"
-                app:drawableStartSize="34dp" />
-            <ImageButton
-                android:id="@+id/edit_profile_button"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/electron_action_background"
-                android:contentDescription="Edit installation"
-                android:padding="13dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_edit_profile"
-                android:tint="@color/primary_text" />
-        </LinearLayout>
-
         <com.kdt.mcgui.MineButton
             android:id="@+id/play_button"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="9dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/electron_play_background"
             android:text="LAUNCH GAME"
             android:textAllCaps="true"
             android:textColor="#FFFFFF"
-            android:textSize="14sp"
+            android:textSize="13sp"
             android:textStyle="bold"
-            android:letterSpacing="0.12" />
+            android:fontFamily="sans"
+            android:letterSpacing="0.1" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
